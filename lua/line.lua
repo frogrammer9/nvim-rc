@@ -17,7 +17,7 @@ end
 local function file_type()
 	local ft = vim.bo.filetype
 	local icons = {
-		lua = "\u{e620} ", -- nf-dev-lua
+		lua = "\u{e620} ",  -- nf-dev-lua
 		python = "\u{e73c} ", -- nf-dev-python
 		javascript = "\u{e74e} ", -- nf-dev-javascript
 		typescript = "\u{e628} ", -- nf-dev-typescript
@@ -51,7 +51,7 @@ local function file_type()
 		dockerfile = "\u{f308} ", -- nf-linux-docker
 		gitcommit = "\u{f418} ", -- nf-oct-git_commit
 		gitconfig = "\u{f1d3} ", -- nf-fa-git
-		vue = "\u{fd42} ", -- nf-md-vuejs
+		vue = "\u{fd42} ",  -- nf-md-vuejs
 		svelte = "\u{e697} ",
 		astro = "\u{e628} ",
 	}
@@ -60,7 +60,7 @@ local function file_type()
 		return " \u{f15b} " -- nf-fa-file_o
 	end
 
-	return ((icons[ft] or " \u{f15b} ") .. ft)
+	return ((icons[ft] or " \u{f15b} "))
 end
 
 -- File size with Nerd Font icon
@@ -110,6 +110,8 @@ vim.cmd([[
   highlight StatusLineBold gui=bold cterm=bold
 ]])
 
+local divider = " \u{e0b1} " -- nf-pl-left_hard_divider
+
 -- Function to change statusline based on window focus
 local function setup_dynamic_statusline()
 	vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter" }, {
@@ -119,14 +121,15 @@ local function setup_dynamic_statusline()
 				"%#StatusLineBold#",
 				"%{v:lua.mode_icon()}",
 				"%#StatusLine#",
-				" \u{e0b1} %f %h%m%r", -- nf-pl-left_hard_divider
-				"%{v:lua.git_branch()}",
-				"\u{e0b1} ", -- nf-pl-left_hard_divider
-				"%{v:lua.file_type()}",
-				"\u{e0b1} ", -- nf-pl-left_hard_divider
+				divider,
 				"%{v:lua.file_size()}",
+				"%{v:lua.file_type()}",
+				"%f %h%m%r",
+				divider,
+				"%{v:lua.git_branch()}",
+				divider,
 				"%=", -- Right-align everything after this
-				" \u{f017} %l:%c  %P ", -- nf-fa-clock_o for line/col
+				" %l:%c  %P ",
 			})
 		end,
 	})
@@ -134,7 +137,7 @@ local function setup_dynamic_statusline()
 
 	vim.api.nvim_create_autocmd({ "WinLeave", "BufLeave" }, {
 		callback = function()
-			vim.opt_local.statusline = "  %f %h%m%r \u{e0b1} %{v:lua.file_type()} %=  %l:%c   %P "
+			vim.opt_local.statusline = "  %f %m %r \u{e0b1} %{v:lua.file_type()} %=  %l:%c   %P "
 		end,
 	})
 end
