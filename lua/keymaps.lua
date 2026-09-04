@@ -111,3 +111,5 @@ mapexpr("i", "<CR>", function()
 		---@diagnostic disable-next-line: undefined-field
 		or _G.MiniPairs.cr()
 end)
+
+map({ "n", "i", "v", "t" }, "<F1>", "<Nop>")
