@@ -1,6 +1,7 @@
 vim.pack.add({
 	{ src = 'https://github.com/nvim-mini/mini.nvim', version = 'stable' },
 	"https://www.github.com/ibhagwan/fzf-lua",
+	"https://github.com/ellisonleao/gruvbox.nvim",
 	"https://www.github.com/neovim/nvim-lspconfig",
 	"https://github.com/stevearc/oil.nvim",
 	"https://github.com/rafamadriz/friendly-snippets",
@@ -11,6 +12,8 @@ vim.pack.add({
 -- ========================================
 --				   Config
 -- ========================================
+
+require("gruvbox").setup()
 
 require("fzf-lua").setup({
 	ui_select = {},

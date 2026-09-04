@@ -1,5 +1,5 @@
 vim.opt.termguicolors = true
-vim.cmd.colorscheme("catppuccin")
+vim.cmd.colorscheme("gruvbox")
 
 vim.opt.number = true                             -- line number
 vim.opt.relativenumber = true                     -- relative line numbers
